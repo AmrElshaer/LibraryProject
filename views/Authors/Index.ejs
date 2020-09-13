@@ -1,0 +1,16 @@
+<h1>All Authors</h1>
+<table>
+    <thead>
+<th>Name</th>
+<th>Action</th>
+    </thead>
+ <% authors.forEach(author=>{%>
+<tr><td><%- author.Name%></td><td>
+    <a href="/Authors/Edit/<%- author.id%>">Edit</a>|
+    <a href="/Authors/Delete/<%- author.id%>">Delete</a>|
+    <a href="/Authors/Details/<%- author.id%>">View</a>
+</td></tr>
+
+
+<% } )%>
+</table>
