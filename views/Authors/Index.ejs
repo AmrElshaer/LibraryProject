@@ -6,9 +6,9 @@
     </thead>
  <% authors.forEach(author=>{%>
 <tr><td><%- author.Name%></td><td>
-    <a href="/Authors/Edit/<%- author.id%>">Edit</a>|
-    <a href="/Authors/Delete/<%- author.id%>">Delete</a>|
-    <a href="/Authors/Details/<%- author.id%>">View</a>
+    <a href="/Authors/Edit?Id=<%- author.id%>">Edit</a>|
+    <a href="/Authors/Delete?Id=<%- author.id%>">Delete</a>|
+    <a href="/Authors/Details?Id=<%- author.id%>">View</a>
 </td></tr>
 
 

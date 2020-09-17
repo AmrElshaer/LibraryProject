@@ -5,6 +5,15 @@ const router = express.Router();
 router.get('/',async (req, res) => { 
         const allauthor=await authors.find({});
         res.render('./Authors/Index',{authors:allauthor})});
+router.get('/Authors/Edit',async(req,res)=>{
+ try {
+     const id=req.query.Id;
+     const auth= await author.find({"_id":ObjectId(id)});
+     res.send(auth.Name);
+ } catch (error) {
+     res.render("NotFound/NotFound");
+ }
+});
 router.get('/Author/Create', (req, res) => { res.render('Authors/Create', { author: new authors() }) });
 router.post('/Author/Create',async (req, res) => {
     const addauthor = new authors({
