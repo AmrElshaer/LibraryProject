@@ -3,8 +3,15 @@ const authors = require('../models/Author');
 const router = express.Router();
 //Get All Authors
 router.get('/',async (req, res) => { 
-        const allauthor=await authors.find({});
+    let searchopject={};
+    if(req.query.Name!=null&&req.query.Name!=='')
+    {
+        searchopject.Name=new RegExp(req.query.Name,'i');
+    }
+        const allauthor=await authors.find(searchopject);
         res.render('./Authors/Index',{authors:allauthor})});
+
+// Edit Author get
 router.get('/Authors/Edit',async(req,res)=>{
  try {
      const id=req.query.Id;
@@ -14,6 +21,7 @@ router.get('/Authors/Edit',async(req,res)=>{
      res.render("NotFound/NotFound");
  }
 });
+// Init Create
 router.get('/Author/Create', (req, res) => { res.render('Authors/Create', { author: new authors() }) });
 router.post('/Author/Create',async (req, res) => {
     const addauthor = new authors({
