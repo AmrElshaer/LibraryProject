@@ -2,8 +2,6 @@ if (process.env.Node_ENV!='production') {
     require('dotenv').config();
 }
 const express=require('express');
-
-
 const expressLayouts=require('express-ejs-layouts');
 const indexrouter=require('./router/AuthorController');
 const mongoose=require('mongoose');
