@@ -1,0 +1,44 @@
+<form action="/Book/Create" method="POST" enctype="multipart/form-data">
+    <div>
+        <label>Name</label>
+        <input name="Name" value="<%= book.Name %>" type="text">
+    </div>
+    <div>
+        <label>Title</label>
+        <input name="Title" value="<%= book.Title %>" type="text">
+    </div>
+    <div>
+        <label>ImageConver</label>
+        <input name="CoverImageName" value="<%= book.CoverImageName %>" type="file">
+    </div>
+    <div>
+        <label>Author</label>
+        <select name="Author">
+            <% authors.forEach(author=>{%>
+                 <% if(author.id==book.Author){%>
+                       <option selected  label="<%= author.Name%>" value="<%=author.id%>"></option>
+                <% }else{%>
+               
+                    <option   label="<%= author.Name%>" value="<%=author.id%>"></option>
+                <%}%>
+            
+            
+            <%})%>
+        </select>
+       
+    </div>
+    <div>
+        <label>PageCount</label>
+        <input name="PageCount" value="<%= book.PageCount %>" type="number">
+    </div>
+    <div>
+        <label>PublshDate</label>
+        <input name="PublshDate" value="<%= book.PublshDate==null?'':book.PublshDate.toISOString().split('T')[0] %>" type="date">
+    </div>
+    <div>
+        <label>Description</label>
+        <textarea name="Description"  value="<%= book.Description %>"></textarea>
+    </div>
+   
+<button type="submit">Save</button>
+</form>

@@ -1,0 +1,24 @@
+<h1>All book</h1>
+<form method="GET">
+<div>
+    <label>Name</label>
+    <input type="text" name="Name">
+</div>
+<div>
+    <label>PublishAfter</label>
+    <input type="date" name="PublishAfter">
+</div>
+<div>
+    <label>PublishPefore</label>
+    <input type="date" name="PublishPefore">
+</div>
+<button type="submit">Search</button>
+</form>
+<div>
+    <% books.forEach(book=>{%>
+        <img height="150px" width="100" src="<%=book.ImagePath%>">
+
+
+
+    <%}) %>
+</div>

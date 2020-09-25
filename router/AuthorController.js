@@ -12,7 +12,7 @@ router.get('/',async (req, res) => {
         res.render('./Authors/Index',{authors:allauthor})});
 
 // Edit Author get
-router.get('/Authors/Edit',async(req,res)=>{
+router.get('/Edit',async(req,res)=>{
  try {
      const id=req.query.Id;
      const auth= await author.find({"_id":ObjectId(id)});
@@ -22,8 +22,8 @@ router.get('/Authors/Edit',async(req,res)=>{
  }
 });
 // Init Create
-router.get('/Author/Create', (req, res) => { res.render('Authors/Create', { author: new authors() }) });
-router.post('/Author/Create',async (req, res) => {
+router.get('/Create', (req, res) => { res.render('Authors/Create', { author: new authors() }) });
+router.post('/Create',async (req, res) => {
     const addauthor = new authors({
         Name: req.body.Name
 
