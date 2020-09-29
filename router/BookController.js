@@ -1,15 +1,14 @@
 const express = require('express');
-const multer=require('multer');
 const author=require('../models/Author');
 const Book = require('../models/Book');
 const router = express.Router();
 const path=require('path');
-const uploadpath=path.join('public',Book.coverImagePath);
+/* const uploadpath=path.join('public',Book.coverImagePath); */
 const imageMimeTypes=['image/png','image/jpg'];
-const upload=multer({
+/* const upload=multer({
     dest:uploadpath
    
-});
+}); */
 //Get All Book
 router.get('/',async (req, res) => { 
     
@@ -49,18 +48,19 @@ router.get('/Create',async (req, res) =>
      }
      
  });
-router.post('/Create',upload.single('CoverImageName'), async (req, res) => {
-    const fileName=  req.file!=null?req.file.filename:null;
+router.post('/Create', async (req, res) => {
+  
           const addbook = new Book({
             Name: req.body.Name,
             Author:req.body.Author,
             PageCount:req.body.PageCount,
             PublshDate:new Date(req.body.PublshDate),
             Description:req.body.Description,
-            Title:req.body.Title,
-            CoverImageName:fileName
+            Title:req.body.Title
+           
     
         });
+        SaveImageCover(addbook,req.body.CoverImageName);
     try {
         
           const newbook = await addbook.save();
@@ -78,4 +78,15 @@ router.post('/Create',upload.single('CoverImageName'), async (req, res) => {
     }
 
 });
+function  SaveImageCover(book,encodeCover){
+    
+    if (encodeCover==null)return;
+    const cover=JSON.parse(encodeCover);
+    if (cover!=null) {
+       
+        book.CoverImageName=new Buffer.from(cover.data,'base64');
+        book.CoverImageType=cover.type;
+    }
+
+}
 module.exports = router;

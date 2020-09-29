@@ -1,6 +1,4 @@
 const mongoose=require('mongoose');
-const path=require('path');
-const coverimagePath="uploads/CoverImage";
 const bookschema=new mongoose.Schema({
 Name:{
 
@@ -18,6 +16,10 @@ CreatedAt:{
     default:Date.now
 },
 CoverImageName:{
+    type:Buffer,
+    required:true
+},
+CoverImageType:{
     type:String,
     required:true
 },
@@ -41,10 +43,11 @@ Description:{
 });
 bookschema.virtual('ImagePath').get(function(){
   if (this.CoverImageName!=null) {
-      return path.join('/',coverimagePath,this.CoverImageName);
+      /* path.join('/',coverimagePath,this.CoverImageName); */
+
+      return `data:${this.CoverImageType};charset=utf-8;base64,${this.CoverImageName.toString('base64')}`;
   }
 
 
 });
 module.exports=mongoose.model('Book',bookschema);
-module.exports.coverImagePath=coverimagePath;
