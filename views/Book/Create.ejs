@@ -1,3 +1,8 @@
 <h2>Add new Book</h2>
 <%- include('../partials/ErrorMessage.ejs')%>
-<%- include('./Create_Edit.ejs') %>
+<form action="/Book/Create" method="POST">
+   <%- include('./Create_Edit.ejs') %>
+   
+    <button type="submit">Save</button>
+    </form>
+

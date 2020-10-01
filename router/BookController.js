@@ -3,6 +3,8 @@ const author=require('../models/Author');
 const Book = require('../models/Book');
 const router = express.Router();
 const path=require('path');
+const Author = require('../models/Author');
+const { isNullOrUndefined } = require('util');
 /* const uploadpath=path.join('public',Book.coverImagePath); */
 const imageMimeTypes=['image/png','image/jpg'];
 /* const upload=multer({
@@ -26,16 +28,8 @@ router.get('/',async (req, res) => {
         const allBook=await query.exec();
         res.render('./Book/Index',{books:allBook})});
 
-// Edit Author get
-router.get('/Edit',async(req,res)=>{
- try {
-     const id=req.query.Id;
-     const auth= await author.find({"_id":ObjectId(id)});
-     res.send(auth.Name);
- } catch (error) {
-     res.render("NotFound/NotFound");
- }
-});
+
+
 // Init Create
 router.get('/Create',async (req, res) =>
  {
@@ -78,6 +72,39 @@ router.post('/Create', async (req, res) => {
     }
 
 });
+router.get('/:id',async(req,res)=>{const oldBook=await Book.findById(req.params.id).populate('Author').exec(); res.render('Book/Detail',{book:oldBook}); });
+router.get('/:id/edit',async(req,res)=>{const oldBook=await Book.findById(req.params.id);const authors=await author.find({}); res.render('Book/Edit', { book: oldBook,authors:authors });});
+router.put('/:id',async(req,res)=>{
+    try {
+         let oldbook=await Book.findById(req.params.id);
+    oldbook.Name= req.body.Name;
+    oldbook.Author=req.body.Author;
+    oldbook.PageCount=req.body.PageCount;
+    oldbook.PublshDate=new Date(req.body.PublshDate);
+    oldbook.Description=req.body.Description;
+    oldbook.Title=req.body.Title;
+    if(req.body.CoverImageName!=null&&req.body.CoverImageName!=''){
+             SaveImageCover(oldbook,req.body.CoverImageName);
+    }
+    
+   await oldbook.save();
+   res.redirect(`/Book/${oldbook.id}`);
+    } catch (error) {
+        res.redirect('/Book');
+    }
+   
+});
+router.delete('/:id',async(req,res)=>{ 
+    let oldBook;
+    try{
+           oldBook=await Book.findById(req.params.id);
+          await oldBook.remove();
+   res.redirect('/Book');
+    }
+    catch{
+        res.redirect(`/Book/${oldBook.id}`);
+    }
+ });
 function  SaveImageCover(book,encodeCover){
     
     if (encodeCover==null)return;

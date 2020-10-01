@@ -15,10 +15,15 @@
 <button type="submit">Search</button>
 </form>
 <div>
+   
     <% books.forEach(book=>{%>
         <img height="150px" width="100" src="<%=book.ImagePath%>">
-
+        <a href="/Book/<%- book.id%>/edit">Edit</a>|
+   
+        <a href="/Book/<%- book.id%>">View</a>
+       <%- include('../partials/Delete',{url:`/Book/${book.id}`})%>
 
 
     <%}) %>
+
 </div>
