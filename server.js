@@ -8,6 +8,7 @@ const bookrouter=require('./router/BookController');
 const homerouter=require('./router/HomeController');
 const mongoose=require('mongoose');
 const bodyparser=require('body-parser');
+const methodoverride=require('method-override');
 const app=express();
 console.log();
 //Database connection
@@ -20,7 +21,7 @@ app.set('view engine','ejs');
 app.set('views',__dirname+'/views');
 app.set('layout','layouts/layout');
 app.use(expressLayouts);
-
+app.use(methodoverride('_method'));
 app.use(bodyparser.urlencoded({limit:'10mb',extended:false}) );
 //add Index middleware
 app.use('/Author',authorrouter);

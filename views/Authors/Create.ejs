@@ -1,3 +1,6 @@
 <h2>Add new Author</h2>
 <%- include('../partials/ErrorMessage.ejs')%>
-<%- include('./Create_Edit.ejs') %>
+<form action="/Author/Create" method="POST">
+    <%- include('./Create_Edit.ejs') %>
+    <button type="submit">Create</button>
+</form>  

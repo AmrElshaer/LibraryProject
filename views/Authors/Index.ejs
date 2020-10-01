@@ -6,9 +6,11 @@
     </thead>
  <% authors.forEach(author=>{%>
 <tr><td><%- author.Name%></td><td>
-    <a href="/Authors/Edit?Id=<%- author.id%>">Edit</a>|
-    <a href="/Authors/Delete?Id=<%- author.id%>">Delete</a>|
-    <a href="/Authors/Details?Id=<%- author.id%>">View</a>
+    <a href="/Author/<%- author.id%>/edit">Edit</a>|
+   
+    <a href="/Author/<%- author.id%>">View</a>
+   <%- include('../partials/Delete',{url:`/Author/${author.id}`})%>
+
 </td></tr>
 
 
