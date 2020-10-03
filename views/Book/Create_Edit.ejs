@@ -1,44 +1,163 @@
 
-<div>
-    <label>Name</label>
-    <input name="Name" value="<%= book.Name %>" type="text">
-</div>
-<div>
-    <label>Title</label>
-    <input name="Title" value="<%= book.Title %>" type="text">
-</div>
-<div>
-    <label>ImageConver</label>
-    <% if(book.CoverImageName!=null){%>
-         <img src="<%=book.ImagePath%>">
-    <%}%>
-    <input name="CoverImageName" value="<%= book.CoverImageName %>" class="filepond" type="file">
-</div>
-<div>
-    <label>Author</label>
-    <select name="Author">
-        <% authors.forEach(author=>{%>
-             <% if(author.id==book.Author){%>
-                   <option selected  label="<%= author.Name%>" value="<%=author.id%>"></option>
-            <% }else{%>
-           
-                <option   label="<%= author.Name%>" value="<%=author.id%>"></option>
+<div class="row">
+    <div class="col-md-7">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    
+                    <input name="Name" value="<%= book.Name %>" type="text" class="form-control"  placeholder="Name">
+                    <%if(errormessage!=null){%>
+                        <%errormessage.filter(error=>error.param=='Name').forEach(error=>{%>
+                   
+                        <div class="alert alert-danger" role="alert">
+                            <%=error.msg%>
+                          </div>
+                    
+                    <%})%>
+                    <%}%>
+                </div>
+            </div>
+            <div class="col-md-6"> 
+                <div class="form-group">
+                 
+                    <input name="Title" class="form-control" value="<%= book.Title %>" placeholder="Title" type="text">
+                    <%if(errormessage!=null){%>
+                        <%errormessage.filter(error=>error.param=='Title').forEach(error=>{%>
+                   
+                        <div class="alert alert-danger" role="alert">
+                            <%=error.msg%>
+                          </div>
+                    
+                    <%})%>
+                    <%}%>
+                </div>
+            </div>
+            <div class="col-md-6"> 
+                <div class="form-group">
+                 
+                    <label  class="label" for="PageCount">PageCount</label>
+                    <input name="PageCount"  class="form-control" value="<%= book.PageCount %>" type="number">
+                    <%if(errormessage!=null){%>
+                        <%errormessage.filter(error=>error.param=='PageCount').forEach(error=>{%>
+                   
+                        <div class="alert alert-danger" role="alert">
+                            <%=error.msg%>
+                          </div>
+                    
+                    <%})%>
+                    <%}%>
+                </div>
+            </div>
+            <div class="col-md-6"> 
+                <div class="form-group">
+                 
+                    <label  class="label" for="PageCount">Price</label>
+                    <input name="Price"  class="form-control" value="<%= book.Price %>" type="number">
+                    <%if(errormessage!=null){%>
+                        <%errormessage.filter(error=>error.param=='Price').forEach(error=>{%>
+                   
+                        <div class="alert alert-danger" role="alert">
+                            <%=error.msg%>
+                          </div>
+                    
+                    <%})%>
+                    <%}%>
+                </div>
+            </div>
+            <div class="col-md-6"> 
+                <div class="form-group">
+                    <label  class="label" for="PublshDate">PublshDate</label>
+                    <input name="PublshDate"  class="form-control" value="<%= book.PublshDate==null?'':book.PublshDate.toISOString().split('T')[0] %>" type="date">
+                    <%if(errormessage!=null){%>
+                        <%errormessage.filter(error=>error.param=='PublshDate').forEach(error=>{%>
+                   
+                        <div class="alert alert-danger" role="alert">
+                            <%=error.msg%>
+                          </div>
+                    
+                    <%})%>
+                    <%}%>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                   
+                    <label  class="label" for="Author">Author</label>
+                    <select name="Author" class="form-control">
+                        <% authors.forEach(author=>{%>
+                             <% if(author.id==book.Author){%>
+                                   <option selected  label="<%= author.Name%>" value="<%=author.id%>"></option>
+                            <% }else{%>
+                           
+                                <option   label="<%= author.Name%>" value="<%=author.id%>"></option>
+                            <%}%>
+                        
+                        
+                        <%})%>
+                    </select>
+                    <%if(errormessage!=null){%>
+                        <%errormessage.filter(error=>error.param=='Author').forEach(error=>{%>
+                   
+                        <div class="alert alert-danger" role="alert">
+                            <%=error.msg%>
+                          </div>
+                    
+                    <%})%>
+                    <%}%>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="label" for="#">Description</label>
+                    <textarea name="Description" class="form-control" id="message" cols="30" rows="4" placeholder="Description" value="<%= book.Description %>"><%= book.Description %></textarea>
+                    <%if(errormessage!=null){%>
+                        <%errormessage.filter(error=>error.param=='Description').forEach(error=>{%>
+                   
+                        <div class="alert alert-danger" role="alert">
+                            <%=error.msg%>
+                          </div>
+                    
+                    <%})%>
+                    <%}%>
+                </div>
+            </div>
+            <% if(book.CoverImageName!=null){%>
+                <div class="col-md-12">
+                    <div class="form-group">
+                       
+                        <img src="<%=book.ImagePath%>" style="max-width: 200px;" name="image">
+                    </div>
+                </div>
+              
+                 
             <%}%>
-        
-        
-        <%})%>
-    </select>
+         
+        </div>
+    </div>
+ 
+    <div class="col-md-5">
+        <div class="form-group">
+            <label class="label" for="CoverImageName">Book Cover</label>
+           
+           
+            <input style="max-width: 150;max-height: 100;"
+             name="CoverImageName" value="<%= book.CoverImageName %>" class="filepond" type="file">
+             <%if(errormessage!=null){%>
+                <%errormessage.filter(error=>error.param=='CoverImageName').forEach(error=>{%>
+           
+                <div class="alert alert-danger" role="alert">
+                    <%=error.msg%>
+                  </div>
+            
+            <%})%>
+            <%}%>
+        </div>
+    </div>
    
-</div>
-<div>
-    <label>PageCount</label>
-    <input name="PageCount" value="<%= book.PageCount %>" type="number">
-</div>
-<div>
-    <label>PublshDate</label>
-    <input name="PublshDate" value="<%= book.PublshDate==null?'':book.PublshDate.toISOString().split('T')[0] %>" type="date">
-</div>
-<div>
-    <label>Description</label>
-    <textarea name="Description"  value="<%= book.Description %>"><%= book.Description %></textarea>
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary">
+            <div class="submitting"></div>
+        </div>
+    </div>
 </div>

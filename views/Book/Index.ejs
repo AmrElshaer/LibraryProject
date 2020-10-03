@@ -1,29 +1,135 @@
-<h1>All book</h1>
-<form method="GET">
-<div>
-    <label>Name</label>
-    <input type="text" name="Name">
-</div>
-<div>
-    <label>PublishAfter</label>
-    <input type="date" name="PublishAfter">
-</div>
-<div>
-    <label>PublishPefore</label>
-    <input type="date" name="PublishPefore">
-</div>
-<button type="submit">Search</button>
-</form>
-<div>
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/Content/Images/bg_5.jpg');"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate mb-0 text-center">
+                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="/">Home <i
+                                class="fa fa-chevron-right"></i></a></span> <span>Book Store <i
+                            class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">Book Store</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="wrapper px-md-4">
+                    
+                    <div class="row no-gutters">
+                        <div class="col-md-12">
+                            <div class="contact-wrap w-100 p-md-3 p-2">
+                                
+                                <form method="GET"  class="contactForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                
+                                                <input type="text" class="form-control" name="Name" id="Name"
+                                                    placeholder="Name">
+                                            </div>
+                                        </div>
+                                    
+                                       
+                                       
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label" for="subject">Publish After</label>
+                                                <input type="date" class="form-control" name="PublishAfter">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label" for="#">Publish Pefore</label>
+                                                <input type="date" name="PublishPefore" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <fieldset class="col-md-12">
+                                            <legend>Price</legend>
+                                            <div class="row">
+                                             
+                                               <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        
+                                                        <input type="number" class="form-control" name="PriceFrom" id="Name"
+                                                            placeholder="From">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        
+                                                        <input type="number" class="form-control" name="PriceTo" id="Name"
+                                                            placeholder="To">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          
+                                        </fieldset>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="submit" value="Search" class="btn btn-primary">
+                                                <div class="submitting"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section">
    
-    <% books.forEach(book=>{%>
-        <img height="150px" width="100" src="<%=book.ImagePath%>">
-        <a href="/Book/<%- book.id%>/edit">Edit</a>|
-   
-        <a href="/Book/<%- book.id%>">View</a>
-       <%- include('../partials/Delete',{url:`/Book/${book.id}`})%>
+    <div class="container-fluid px-md-5">
+        <div class="row">
+            <% books.forEach(book=>{%>
+
+            <div class="col-md-6 col-lg-4 d-flex">
+                <div class="book-wrap d-lg-flex">
+                    <div class="img d-flex justify-content-end" style="background-image: url(<%=book.ImagePath%>);">
+                        <div class="in-text">
+                           
+                            
+                            <a href="#" class="icon d-flex align-items-center justify-content-center"
+                                data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
+                                <span class="flaticon-heart-1"></span>
+                            </a>
+                            <a href="/Book/<%- book.id%>" class="icon d-flex align-items-center justify-content-center"
+                                data-toggle="tooltip" data-placement="left" title="Quick View">
+                                <span class="flaticon-search"></span>
+                            </a>
+                            <a href="/Book/<%- book.id%>/edit"
+                                class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip"
+                                data-placement="left" title="Edit Book">
+                                <span class="fa fa-pencil-square-o"></span>
+                            </a>
+                            <form method="POST" id="DeletBook" action="/Book/<%-book.id%>?_method=DELETE">
+                                <a href="javascript:document.getElementById('DeletBook').submit();" class="icon d-flex align-items-center justify-content-center"
+                                data-toggle="tooltip" data-placement="left" title="Delete Book">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                               
+                            </form>
+                        </div>
+                    </div>
+                    <div class="text p-4">
+                        <p class="mb-2"><span class="price">$<%-book.Price%></span></p>
+                        <h2><a href="#"><%-book.Description%></a></h2>
+                        <span class="position"><%-book.Author.Name%></span>
+                    </div>
+                </div>
+            </div>
+
+            <%}) %>
 
 
-    <%}) %>
-
-</div>
+        </div>
+       
+    </div>
+</section>

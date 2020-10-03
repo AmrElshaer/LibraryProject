@@ -1,6 +1,63 @@
 
-
-<div>
-        <label>Name</label>
-        <input name="Name" value="<%= author.Name %>" type="text">
+<div class="row">
+    <div class="col-md-7">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    
+                    <input name="Name" value="<%= author.Name %>" type="text" class="form-control"  placeholder="Name">
+                    
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="label" for="CoverImageName">Author Image</label>
+                   
+                   
+                    <input style="max-width: 150;max-height: 100;"
+                     name="CoverImageName" value="<%= author.CoverImageName %>" class="filepond" type="file">
+                     <%if(errormessage!=null){%>
+                        <%errormessage.filter(error=>error.param=='CoverImageName').forEach(error=>{%>
+                   
+                        <div class="alert alert-danger" role="alert">
+                            <%=error.msg%>
+                          </div>
+                    
+                    <%})%>
+                    <%}%>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="label" for="#">Description</label>
+                    <textarea name="Description" class="form-control" id="message" cols="30" rows="4" placeholder="Description" value="<%= author.Description %>"><%= author.Description %></textarea>
+                    <%if(errormessage!=null){%>
+                        <%errormessage.filter(error=>error.param=='Description').forEach(error=>{%>
+                   
+                        <div class="alert alert-danger" role="alert">
+                            <%=error.msg%>
+                          </div>
+                    
+                    <%})%>
+                    <%}%>
+                </div>
+            </div>
+            <% if(author.CoverImageName!=null){%>
+                <div class="col-md-12">
+                    <div class="form-group">
+                       
+                        <img src="<%=author.ImagePath%>" style="max-width: 200px;" name="image">
+                    </div>
+                </div>
+              
+                 
+            <%}%>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary">
+                    <div class="submitting"></div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>

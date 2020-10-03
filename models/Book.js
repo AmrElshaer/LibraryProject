@@ -40,6 +40,11 @@ Description:{
     type:String,
     required:true
 }
+,
+Price:{
+    type:Number,
+    required:true
+}
 });
 bookschema.virtual('ImagePath').get(function(){
   if (this.CoverImageName!=null) {

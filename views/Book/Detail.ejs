@@ -1,33 +1,111 @@
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/Content/Images/bg_5.jpg');"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate mb-0 text-center">
+                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="/">Home <i
+                                class="fa fa-chevron-right"></i></a></span> <span>Single Book <i
+                            class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">Single Book</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="wrapper px-md-4">
 
-<div>
-    <label>Name</label>
-    <input readonly name="Name" value="<%= book.Name %>" type="text">
-</div>
-<div>
-    <label>Title</label>
-    <input readonly name="Title" value="<%= book.Title %>" type="text">
-</div>
-<div>
-    <label>ImageConver</label>
-    <img height="150px" width="100" src="<%=book.ImagePath%>">
-   
-</div>
-<div>
-    <label>Author</label>
-    <input readonly name="Author" value="<%-book.Author.Name%>"/>
-       
-    
-   
-</div>
-<div>
-    <label>PageCount</label>
-    <input readonly name="PageCount" value="<%= book.PageCount %>" type="number">
-</div>
-<div>
-    <label>PublshDate</label>
-    <input readonly name="PublshDate" value="<%= book.PublshDate==null?'':book.PublshDate.toISOString().split('T')[0] %>" type="date">
-</div>
-<div>
-    <label>Description</label>
-    <textarea readonly name="Description" ><%= book.Description %></textarea>
-</div>
+                    <div class="row no-gutters">
+                        <div class="col-md-12">
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+
+
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+
+                                                    <input readonly name="Name" value="<%= book.Name %>" type="text"
+                                                        class="form-control" placeholder="Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+
+                                                    <input readonly name="Title" class="form-control"
+                                                        value="<%= book.Title %>" placeholder="Title" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="Price">Price</label>
+                                                    <input readonly name="Price" class="form-control"
+                                                        value="<%= book.Price %>" placeholder="Title" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+
+                                                    <label class="label" for="PageCount">PageCount</label>
+                                                    <input readonly name="PageCount" class="form-control"
+                                                        value="<%= book.PageCount %>" type="number">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="PublshDate">PublshDate</label>
+                                                    <input readonly name="PublshDate" class="form-control"
+                                                        value="<%= book.PublshDate==null?'':book.PublshDate.toISOString().split('T')[0] %>"
+                                                        type="date">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <label class="label" for="Author">Author</label>
+                                                    <input readonly class="form-control" name="Author"
+                                                        value="<%-book.Author.Name%>" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="#">Description</label>
+                                                    <textarea readonly name="Description" class="form-control"
+                                                        id="message" cols="30" rows="4" placeholder="Description"
+                                                        value="<%= book.Description %>"><%= book.Description %></textarea>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <% if(book.CoverImageName!=null){%>
+                                            
+                                                <div class="form-group" style="text-align: center;">
+
+                                                    <img src="<%=book.ImagePath%>"  style="max-width: 300px;">
+                                                </div>
+                                            
+
+
+                                            <%}%>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,8 +1,159 @@
-<div>
-    <% books.forEach(book=>{%>
-        <img height="150px" width="100" src="<%=book.ImagePath%>">
+<section class="hero-wrap" style="background-image: url('/Content/Images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center">
+            <div class="col-md-8 ftco-animate d-flex align-items-end">
+                <div class="text w-100">
+                    <h1 class="mb-4">Good books don't give up all their secrets at once</h1>
+                    <p class="mb-4">A small river named Duden flows by their place and supplies it with the
+                        necessary regelialia.</p>
+                    <p><a href="#" class="btn btn-primary py-3 px-4">View All Books</a> <a href="#"
+                            class="btn btn-white py-3 px-4">Explore Now</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section ftco-no-pt mt-5 mt-md-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 d-flex align-items-stretch ftco-animate">
+                <div class="services-2 text-center">
+                    <div class="icon-wrap">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="flaticon-fantasy"></span>
+                        </div>
+                    </div>
+                    <h2><a href="#">Children's Book</a></h2>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-items-stretch ftco-animate">
+                <div class="services-2 text-center">
+                    <div class="icon-wrap">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="flaticon-heart"></span>
+                        </div>
+                    </div>
+                    <h2><a href="#">Romance</a></h2>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-items-stretch ftco-animate">
+                <div class="services-2 text-center">
+                    <div class="icon-wrap">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="flaticon-model"></span>
+                        </div>
+                    </div>
+                    <h2><a href="#">Art &amp; Architecture</a></h2>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-items-stretch ftco-animate">
+                <div class="services-2 text-center">
+                    <div class="icon-wrap">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="flaticon-history"></span>
+                        </div>
+                    </div>
+                    <h2><a href="#">History</a></h2>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-
-
-    <%}) %>
-</div>
+<section class="ftco-section ftco-no-pt">
+    <div class="container-fluid px-md-4">
+        <div class="row justify-content-center pb-5 mb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span class="subheading">Books</span>
+                <h2>New Release</h2>
+            </div>
+        </div>
+        <div class="row">
+            <% books.forEach(book=>{%>
+              <!--   <img height="150px" width="100" src="<%=book.ImagePath%>"> -->
+        
+                <div class="col-md-6 col-lg-4 d-flex">
+                        <div class="book-wrap d-lg-flex">
+                            <div class="img d-flex justify-content-end" style="background-image: url(<%=book.ImagePath%>);">
+                                <div class="in-text">
+                                    <a href="#" class="icon d-flex align-items-center justify-content-center"
+                                data-toggle="tooltip" data-placement="left" title="Add to Wishlist">
+                                <span class="flaticon-heart-1"></span>
+                            </a>
+                            <a href="/Book/<%- book.id%>" class="icon d-flex align-items-center justify-content-center"
+                                data-toggle="tooltip" data-placement="left" title="Quick View">
+                                <span class="flaticon-search"></span>
+                            </a>
+                            <a href="/Book/<%- book.id%>/edit"
+                                class="icon d-flex align-items-center justify-content-center" data-toggle="tooltip"
+                                data-placement="left" title="Edit Book">
+                                <span class="fa fa-pencil-square-o"></span>
+                            </a>
+                            <form method="POST" id="DeletBook" action="/Book/<%-book.id%>?_method=DELETE">
+                                <a href="javascript:document.getElementById('DeletBook').submit();" class="icon d-flex align-items-center justify-content-center"
+                                data-toggle="tooltip" data-placement="left" title="Delete Book">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                            </form>
+                               
+                                </div>
+                            </div>
+                            <div class="text p-4">
+                                <p class="mb-2"><span class="price">$<%-book.Price%></span></p>
+                                <h2><a href="#"><%-book.Description%></a></h2>
+                                <span class="position"><%-book.Author.Name%></span>
+                            </div>
+                        </div>
+                    </div>
+        
+            <%}) %>
+           
+          
+        </div>
+    </div>
+</section>
+<section class="ftco-section testimony-section ftco-no-pb">
+    <div class="img img-bg border" style="background-image: url(/Content/Images/bg_4.jpg);"></div>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+                <span class="subheading">Authors</span>
+                <h2 class="mb-3">Kinds Words From Clients</h2>
+            </div>
+        </div>
+        <div class="row ftco-animate">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel ftco-owl">
+                    <%authors.forEach(author=>{%>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-quote-left"></div>
+                            <div class="text">
+                                <p class="mb-4"><%-author.Description%></p>
+                                <div class="d-flex align-items-center">
+                                    <div class="user-img" style="background-image: url(<%-author.ImagePath%>)"></div>
+                                    <div class="pl-3">
+                                        <p class="name"><%-author.Name%></p>
+                                        <span class="position">Author</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <%})%>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
