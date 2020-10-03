@@ -109,7 +109,13 @@
                             </div>
                             <div class="text p-4">
                                 <p class="mb-2"><span class="price">$<%-book.Price%></span></p>
-                                <h2><a href="#"><%-book.Description%></a></h2>
+                                <h2><a href="#">
+                                    <%if(book.Description.length>50){%>
+                                        <%book.Description=book.Description.substr(0,40)%><%-book.Description%><a href="/Book/<%- book.id%>" class="btn"><span>....See More</span></a>
+                                    <%}else{%>
+                                        <%-book.Description%>
+                                        <%}%>
+                                </a></h2>
                                 <span class="position"><%-book.Author.Name%></span>
                             </div>
                         </div>
