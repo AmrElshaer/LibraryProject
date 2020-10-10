@@ -1,0 +1,111 @@
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/Content/Images/bg_5.jpg');"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate mb-0 text-center">
+                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="/">Home <i
+                                class="fa fa-chevron-right"></i></a></span> <span>Register <i
+                            class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">Register</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="wrapper px-md-4">
+
+                    <div class="row no-gutters">
+                        <div class="col-md-12">
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                <form method="POST" action="/Account/Register">
+                                    <div class="form-group">
+                                        <label for="Name">Name</label>
+                                        <input type="text" name="Name" class="form-control" id="Name" aria-describedby="Name"
+                                            placeholder="Enter Name" value="<%- user.Name%>">
+                                            <%if(errormessage!=null){%>
+                                                <%errormessage.filter(error=>error.param=='Name').forEach(error=>{%>
+                                           
+                                                <div class="alert alert-danger" role="alert">
+                                                    <%=error.msg%>
+                                                  </div>
+                                                 
+                                            <%})%>
+                                            <%}%>
+                                        
+                                    </div>
+                                   
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input value="<%- user.Email%>" name="Email" type="email" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" placeholder="Enter email">
+                                            <%if(errormessage!=null){%>
+                                                <%errormessage.filter(error=>error.param=='Email').forEach(error=>{%>
+                                           
+                                                <div class="alert alert-danger" role="alert">
+                                                    <%=error.msg%>
+                                                  </div>
+                                                 
+                                            <%})%>
+                                            <%}%>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input value="<%-user.Password%>" type="password" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Password" name="Password">
+                                            <%if(errormessage!=null){%>
+                                                <%errormessage.filter(error=>error.param=='Password').forEach(error=>{%>
+                                           
+                                                <div class="alert alert-danger" role="alert">
+                                                    <%=error.msg%>
+                                                  </div>
+                                                 
+                                            <%})%>
+                                            <%}%>
+                                    </div>
+                                    
+                                        <div class="form-group">
+                                            <label class="label" for="#">About You</label>
+                                            <textarea name="AboutYou" class="form-control" id="message" cols="30" rows="4" placeholder="Description" value="<%= user.AboutYou %>"><%= user.AboutYou %></textarea>
+                                            <%if(errormessage!=null){%>
+                                                <%errormessage.filter(error=>error.param=='AboutYou').forEach(error=>{%>
+                                           
+                                                <div class="alert alert-danger" role="alert">
+                                                    <%=error.msg%>
+                                                  </div>
+                                                 
+                                            <%})%>
+                                            <%}%>
+                                        </div>
+                                    
+                                        <div class="form-group">
+                                            <label class="label" for="CoverImageName">Image</label>
+                                           
+                                           
+                                            <input style="max-width: 150;max-height: 100;"
+                                             name="CoverImageName" value="<%= user.CoverImageName %>" class="filepond" type="file">
+                                             <%if(errormessage!=null){%>
+                                                <%errormessage.filter(error=>error.param=='CoverImageName').forEach(error=>{%>
+                                           
+                                                <div class="alert alert-danger" role="alert">
+                                                    <%=error.msg%>
+                                                  </div>
+                                                 
+                                            <%})%>
+                                            <%}%>
+                                        </div>
+                                    
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                    <a class="btn btn-primary" href="/Account/Login">Login</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

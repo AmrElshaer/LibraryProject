@@ -72,8 +72,21 @@
           <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="/Book/" class="nav-link">Books</a></li>
           <li class="nav-item"><a href="/Book/Create" class="nav-link">New Book</a></li>
+
           <li class="nav-item"><a href="/Author" class="nav-link">Author</a></li>
           <li class="nav-item"><a href="/Author/Create" class="nav-link">New Author</a></li>
+<%if(User==null){%>
+  <li class="nav-item"><a href="/Account/Register" class="nav-link">Register</a></li>
+  <li class="nav-item"><a href="/Account/Login" class="nav-link">Login</a></li>
+  <%}else{%>
+    <li class="nav-item"><form class="nav-link" method="POST" action="/Account/logout?_method=DELETE" id="logout"><a href="javascript:document.getElementById('logout').submit();" >Logout</a></form></li>
+    <li class="nav-item"><a href="#" class="nav-link"><%=User.Name%><span ><img class="img-fluid img-thumbnail" style="max-width:50px;"  src="<%=User.ImagePath%>"></span></a></li>
+    
+    
+    <%}%>
+         
+          
+          
         </ul>
       </div>
     </div>
